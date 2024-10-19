@@ -9,14 +9,15 @@ feld für alle vorlesungen (ordner struktur):
     - transkript
 
 button für flashcards und quiz
-chatbot feld (GPT3 API)
+chatbot feld 
 (json für memory von bot zusammenhang zur vorlesung)
 
 datenstruktur zum speichern von vorlesungen
 pattern für quiz und flashcard schreiben (immer nach einem schema)
+
 lecture pattern umschreiben sodass mermaid charts
 
-ANFANG: ENTER API KEY
+rec/dnd fenster drop down für ai aussuchen (fabric -L)
 
 ```mermaid
 graph TD;

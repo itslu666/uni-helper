@@ -12,18 +12,14 @@ root.grid_columnconfigure(1, weight=1)  # make column 0 expandable
 # make widgets
 # frames
 nav_frame = ctk.CTkFrame(root)
-
-# tabview
-tabview = ctk.CTkTabview(root)
-tabview.add("Summary")
-tabview.add("Quiz")
-tabview.add("Flash Cards")
+txt_frame = ctk.CTkFrame(root)
 
 # button test
 button = ctk.CTkButton(
     nav_frame,
     corner_radius=0,
     height=40,
+    width=180,
     border_spacing=10,
     text="test",
     fg_color="transparent",
@@ -34,7 +30,7 @@ button = ctk.CTkButton(
 
 # show widgets
 nav_frame.grid(row=0, column=0, sticky="nsew", pady=10, padx=(10, 5))
-tabview.grid(row=0, column=1, sticky="nsew", pady=10, padx=(5, 10))
+txt_frame.grid(row=0, column=1, sticky="nsew", pady=10, padx=(5, 10))
 button.grid(row=0, column=0, sticky="ew")
 
 root.mainloop()
