@@ -19,8 +19,22 @@ tabview.add("Summary")
 tabview.add("Quiz")
 tabview.add("Flash Cards")
 
+# button test
+button = ctk.CTkButton(
+    nav_frame,
+    corner_radius=0,
+    height=40,
+    border_spacing=10,
+    text="test",
+    fg_color="transparent",
+    text_color=("gray10", "gray90"),
+    hover_color=("gray70", "gray30"),
+    anchor="w",
+)  # change fg color when clicked (change other buttons back to og color)
+
 # show widgets
 nav_frame.grid(row=0, column=0, sticky="nsew", pady=10, padx=(10, 5))
 tabview.grid(row=0, column=1, sticky="nsew", pady=10, padx=(5, 10))
+button.grid(row=0, column=0, sticky="ew")
 
 root.mainloop()
