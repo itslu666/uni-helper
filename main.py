@@ -1,6 +1,6 @@
 import customtkinter as ctk
 import os
-from modules import frames
+from modules import frames, new_window
 
 # initial root window
 root = ctk.CTk()
@@ -135,6 +135,7 @@ new_button = ctk.CTkButton(
     text_color=("gray10", "gray90"),
     hover_color=("gray70", "gray30"),
     anchor="w",
+    command=new_window.open_new
 )
 
 
