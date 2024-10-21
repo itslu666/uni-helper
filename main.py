@@ -19,6 +19,10 @@ txt_frame = ctk.CTkFrame(root)
 # var for rows for nav buttons
 row = 0
 
+# var to track file visibility
+file_visibility = {}
+
+
 # make button for each lecture folder
 for name in os.listdir("./data"):
     if name.endswith("_lecture") and os.path.isdir(os.path.join("./data", name)):
@@ -35,7 +39,13 @@ for name in os.listdir("./data"):
             hover_color=("gray70", "gray30"),
             anchor="w",
             command=lambda: frames.show_files(
-                lecture_folder_button, summary_button, quiz_button, cards_button
+                file_visibility,
+                name,
+                lecture_folder_button,
+                summary_button,
+                quiz_button,
+                cards_button,
+                row,
             ),
         )
 
@@ -52,10 +62,16 @@ for name in os.listdir("./data"):
                 text_color=("gray10", "gray90"),
                 hover_color=("gray70", "gray30"),
                 command=lambda: frames.show_files(
-                    lecture_folder_button, summary_button, quiz_button, cards_button
+                    file_visibility,
+                    name,
+                    lecture_folder_button,
+                    summary_button,
+                    quiz_button,
+                    cards_button,
+                    row,
                 ),
             )
-        
+
         if os.path.isfile(os.path.join(f"./data/{name}/quiz.txt")):
             quiz_button = ctk.CTkButton(
                 nav_frame,
@@ -68,10 +84,16 @@ for name in os.listdir("./data"):
                 text_color=("gray10", "gray90"),
                 hover_color=("gray70", "gray30"),
                 command=lambda: frames.show_files(
-                    lecture_folder_button, summary_button, quiz_button, cards_button
+                    file_visibility,
+                    name,
+                    lecture_folder_button,
+                    summary_button,
+                    quiz_button,
+                    cards_button,
+                    row,
                 ),
             )
-        
+
         if os.path.isfile(os.path.join(f"./data/{name}/flash_cards.txt")):
             cards_button = ctk.CTkButton(
                 nav_frame,
@@ -84,14 +106,23 @@ for name in os.listdir("./data"):
                 text_color=("gray10", "gray90"),
                 hover_color=("gray70", "gray30"),
                 command=lambda: frames.show_files(
-                    lecture_folder_button, summary_button, quiz_button, cards_button
+                    file_visibility,
+                    name,
+                    lecture_folder_button,
+                    summary_button,
+                    quiz_button,
+                    cards_button,
+                    row,
                 ),
             )
+
+        # set name for file visibility
+        file_visibility[name] = False
 
         # show buttons
         lecture_folder_button.grid(row=row, column=0, sticky="ew")
 
-        row+=1
+        row += 1
 
 new_button = ctk.CTkButton(
     root,
