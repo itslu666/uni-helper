@@ -18,19 +18,7 @@ def open_new():
         image=ctk.CTkImage(Image.open("./data/images/rec-button.png"), size=(50, 50)),
         command=button_click,
     )
+    
     # drag and drop
-
     button.pack()
     root.mainloop()
-
-
-# click for the rec button
-def button_click():
-    print("buttonclick")
-    return saund()
-    # nimmt dann auf
-
-
-def saund():
-    # recording of and aduio
-    print("klappt noch nicht")
