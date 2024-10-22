@@ -17,7 +17,7 @@ def open_new():
         height=30,
         text="",
         fg_color="transparent",
-        hover_color="#2b2b2b",
+        hover_color="#242424",
         image=ctk.CTkImage(Image.open("./data/images/rec-button.png"), size=(50, 50)),
     )
 
