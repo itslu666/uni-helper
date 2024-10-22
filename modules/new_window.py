@@ -10,17 +10,19 @@ def open_new():
     root.title("New Lecture")
 
     # button
-    button = ctk.CTkButton(
+    start_rec_button = ctk.CTkButton(
         root,
         width=30,
+        corner_radius=360,
         height=30,
-        text="",
+        text= "",
+        fg_color="transparent",
+        hover_color="#2b2b2b",
         image=ctk.CTkImage(Image.open("./data/images/rec-button.png"), size=(50, 50)),
         command=button_click,
     )
     # drag and drop
-
-    button.pack()
+    start_rec_button.pack()
     root.mainloop()
 
 
@@ -33,4 +35,4 @@ def button_click():
 
 def saund():
     # recording of and aduio
-    print("klappt noch nicht")
+    print("you dont win dows")
