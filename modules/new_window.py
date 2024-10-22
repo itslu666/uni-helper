@@ -19,7 +19,6 @@ def open_new():
         fg_color="transparent",
         hover_color="#2b2b2b",
         image=ctk.CTkImage(Image.open("./data/images/rec-button.png"), size=(50, 50)),
-        command=button_click,
     )
 
     # drag and drop
