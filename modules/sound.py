@@ -40,7 +40,7 @@ def start_rec(start_button, stop_button, thread_container, root):
     recording_thread.start()
 
 
-def save_audio(filename, audio_data, win, root):
+def save_audio(filename, audio_data, root):
     print("saving audio")
     audio_np = np.concatenate(audio_data, axis=0)
     with wave.open(filename, "wb") as wf:
@@ -49,24 +49,20 @@ def save_audio(filename, audio_data, win, root):
         wf.setframerate(44100)
         wf.writeframes(audio_np.astype(np.int16).tobytes())
 
-        win.destroy()
-        print("win destroyed")
         root.destroy()
         print("root destroyed")
 
 
 def show_file_naming_win(audio_data, root):
+    frame = ctk.CTkFrame(root)
 
-    win = ctk.CTkToplevel()
-
-    input_field = ctk.CTkEntry(win)
+    input_field = ctk.CTkEntry(frame)
     save_button = ctk.CTkButton(
-        win,
+        frame,
         text="Save",
-        command=lambda: save_audio(f"{input_field.get()}.wav", audio_data, win, root),
+        command=lambda: save_audio(f"{input_field.get()}.wav", audio_data, root),
     )
 
+    frame.grid(row=1, column=0)
     input_field.pack()
     save_button.pack()
-
-    win.mainloop()

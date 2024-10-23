@@ -2,6 +2,20 @@ import customtkinter as ctk
 import os
 from modules import frames, new_window
 
+
+def make_lecture_dropdowns(options, selected_option, name):
+    lecture_label = ctk.CTkLabel(nav_frame, text=name)
+
+    lecture_dropdown = ctk.CTkOptionMenu(
+        nav_frame,
+        command=lambda val: selected_option.set(val),
+        variable=selected_option,
+        values=options,
+    )
+
+    lecture_dropdown.grid(row=0, column=0)
+
+
 # initial root window
 root = ctk.CTk()
 root.title("Uni Helper")
@@ -28,27 +42,8 @@ for name in os.listdir("./data/lectures"):
     if name.endswith("_lecture") and os.path.isdir(
         os.path.join("./data/lectures", name)
     ):
-        # make button for lecture folder
-        lecture_folder_button = ctk.CTkButton(
-            nav_frame,
-            corner_radius=0,
-            height=40,
-            width=180,
-            border_spacing=10,
-            text=name.split("_")[0],
-            fg_color="transparent",
-            text_color=("gray10", "gray90"),
-            hover_color=("gray70", "gray30"),
-            anchor="w",
-            command=lambda: frames.show_files(
-                file_visibility,
-                name,
-                lecture_folder_button,
-                summary_button,
-                quiz_button,
-                cards_button,
-                row,
-            ),
+        make_lecture_dropdowns(
+            ["test", "test2", "test3"], ctk.StringVar(value="hallo"), name
         )
 
         # make summary button
@@ -114,7 +109,7 @@ for name in os.listdir("./data/lectures"):
         file_visibility[name] = False
 
         # show buttons
-        lecture_folder_button.grid(row=row, column=0, sticky="ew")
+        # lecture_folder_button.grid(row=row, column=0, sticky="ew")
 
         row += 1
 
