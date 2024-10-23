@@ -24,8 +24,10 @@ file_visibility = {}
 
 
 # make button for each lecture folder
-for name in os.listdir("./data"):
-    if name.endswith("_lecture") and os.path.isdir(os.path.join("./data", name)):
+for name in os.listdir("./data/lectures"):
+    if name.endswith("_lecture") and os.path.isdir(
+        os.path.join("./data/lectures", name)
+    ):
         # make button for lecture folder
         lecture_folder_button = ctk.CTkButton(
             nav_frame,
@@ -50,7 +52,7 @@ for name in os.listdir("./data"):
         )
 
         # make summary button
-        if os.path.isfile(os.path.join(f"./data/{name}/summary.txt")):
+        if os.path.isfile(os.path.join(f"./data/lectures/{name}/summary.txt")):
             summary_button = ctk.CTkButton(
                 nav_frame,
                 corner_radius=0,
@@ -72,7 +74,7 @@ for name in os.listdir("./data"):
                 ),
             )
 
-        if os.path.isfile(os.path.join(f"./data/{name}/quiz.txt")):
+        if os.path.isfile(os.path.join(f"./data/lectures/{name}/quiz.txt")):
             quiz_button = ctk.CTkButton(
                 nav_frame,
                 corner_radius=0,
@@ -94,7 +96,7 @@ for name in os.listdir("./data"):
                 ),
             )
 
-        if os.path.isfile(os.path.join(f"./data/{name}/flash_cards.txt")):
+        if os.path.isfile(os.path.join(f"./data/lectures/{name}/flash_cards.txt")):
             cards_button = ctk.CTkButton(
                 nav_frame,
                 corner_radius=0,
@@ -135,7 +137,7 @@ new_button = ctk.CTkButton(
     text_color=("gray10", "gray90"),
     hover_color=("gray70", "gray30"),
     anchor="w",
-    command=new_window.open_new
+    command=new_window.open_new,
 )
 
 
