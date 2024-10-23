@@ -27,8 +27,11 @@ def open_new():
         ),
     )
 
-    stop_rec_button = ctk.CTkButton(root, width=30, height=30, text="stop button")
+    stop_rec_button = ctk.CTkButton(root, width=30, height=30, text="", image=ctk.CTkImage(Image.open("./data/images/stop2-button.png"), size=(50, 50))
+    )
 
     # add drag and drop
+    
+
     start_rec_button.grid(row=0, column=0, sticky="nsew")
     root.mainloop()

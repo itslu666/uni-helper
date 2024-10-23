@@ -4,6 +4,7 @@ from scipy.io.wavfile import write
 import numpy as np
 import wave
 import threading
+from PIL import Image
 
 
 def start_rec(start_button, stop_button, thread_container, root):
