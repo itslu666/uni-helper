@@ -12,6 +12,7 @@ To List the API keys and config you have to Setup fabric by typing: fabric --set
 - genarating summaries, quizes and Flash cards
 
 # TODO: 
-- [ ] Sound recordings
+- [x] Sound recordings
 - [ ] stop recording button 
 - [ ] drag and drop for audio files 
+- [ ] Transcribe function
