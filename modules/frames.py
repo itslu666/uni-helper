@@ -13,14 +13,17 @@ def show_files(
     # Toggle the visibility state
     file_visibility[name] = not file_visibility[name]
 
+    print(file_visibility[name])
     # Update button appearance based on visibility state
     if file_visibility[name]:
+        print("show buttons")
         lecture_folder_button.configure(fg_color=("gray75", "gray25"))
         # Show the files
         summary_button.grid(row=row + 1, column=0, sticky="ew")
         quiz_button.grid(row=row + 2, column=0, sticky="ew")
         cards_button.grid(row=row + 3, column=0, sticky="ew")
     else:
+        print("hide buttons")
         lecture_folder_button.configure(fg_color="transparent")
         # Hide the files
         summary_button.grid_remove()

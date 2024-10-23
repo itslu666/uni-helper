@@ -63,15 +63,7 @@ for name in os.listdir("./data/lectures"):
                 fg_color="transparent",
                 text_color=("gray10", "gray90"),
                 hover_color=("gray70", "gray30"),
-                command=lambda: frames.show_files(
-                    file_visibility,
-                    name,
-                    lecture_folder_button,
-                    summary_button,
-                    quiz_button,
-                    cards_button,
-                    row,
-                ),
+                command=lambda: frames.summary_frame(txt_frame),
             )
 
         if os.path.isfile(os.path.join(f"./data/lectures/{name}/quiz.txt")):
