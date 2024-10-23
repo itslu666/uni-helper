@@ -17,3 +17,4 @@ To List the API keys and config you have to Setup fabric by typing: fabric --set
 - [ ] Drag and drop for audio files 
 - [ ] Transcribe function
 - [ ] Switch from buttons to dropdowns
+- [ ] Delete lecture button
