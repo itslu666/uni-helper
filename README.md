@@ -13,6 +13,6 @@ To List the API keys and config you have to Setup fabric by typing: fabric --set
 
 # TODO: 
 - [x] Sound recordings
-- [ ] stop recording button 
-- [ ] drag and drop for audio files 
+- [ ] Stop recording button 
+- [ ] Drag and drop for audio files 
 - [ ] Transcribe function
