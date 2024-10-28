@@ -23,6 +23,8 @@ Before using Uni-Helper, you need to set up Fabric
 - [x] Switch from buttons to dropdowns
 - [ ] Delete lecture button
 - [ ] AI selection dropdown in recording window
+- [ ] create new lecture folder after saving audio
+- [ ] write audio file in lectures folder
 
 # Installation
 ...
