@@ -6,12 +6,12 @@ import wave
 import threading
 
 
-def start_rec(start_button, stop_button, thread_container, root):
+def start_rec(start_button, stop_button, thread_container, new_window):
     print("start recording")
 
     # show stop button
-    stop_button.grid(row=0, column=1)
-    # change rec button image
+    stop_button.grid(row=0, column=0, pady=(10, 0))
+    start_button.destroy()
 
     audio_data = []
     is_recording = [True]
@@ -31,7 +31,7 @@ def start_rec(start_button, stop_button, thread_container, root):
         print("stopping")
         is_recording[0] = False
         thread_container[0].join()
-        show_file_naming_win(audio_data, root)
+        show_file_naming_win(audio_data, new_window)
 
     stop_button.configure(command=stop_rec)
 
@@ -40,7 +40,7 @@ def start_rec(start_button, stop_button, thread_container, root):
     recording_thread.start()
 
 
-def save_audio(filename, audio_data, root):
+def save_audio(filename, audio_data, new_window):
     print("saving audio")
     audio_np = np.concatenate(audio_data, axis=0)
     with wave.open(filename, "wb") as wf:
@@ -49,20 +49,20 @@ def save_audio(filename, audio_data, root):
         wf.setframerate(44100)
         wf.writeframes(audio_np.astype(np.int16).tobytes())
 
-        root.destroy()
-        print("root destroyed")
+        new_window.destroy()
+        print("new_window destroyed")
 
 
-def show_file_naming_win(audio_data, root):
-    frame = ctk.CTkFrame(root)
+def show_file_naming_win(audio_data, new_window):
+    frame = ctk.CTkFrame(new_window)
 
     input_field = ctk.CTkEntry(frame)
     save_button = ctk.CTkButton(
         frame,
         text="Save",
-        command=lambda: save_audio(f"{input_field.get()}.wav", audio_data, root),
+        command=lambda: save_audio(f"{input_field.get()}.wav", audio_data, new_window),
     )
 
-    frame.grid(row=1, column=0)
-    input_field.pack()
-    save_button.pack()
+    input_field.pack(expand=True, fill="both", pady=(0, 5))
+    save_button.pack(expand=True, fill="both")
+    frame.grid(row=0, column=0, padx=10, pady=10)
