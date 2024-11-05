@@ -5,7 +5,7 @@ import numpy as np
 import wave
 import threading
 from PIL import Image
-
+import os
 
 def start_rec(start_button, stop_button, thread_container, new_window):
     print("start recording")
@@ -40,7 +40,18 @@ def start_rec(start_button, stop_button, thread_container, new_window):
     thread_container[0] = recording_thread
     recording_thread.start()
 
-
+def new_folder(folder_name):
+    try:
+        os.mkdir("lectures/" + folder_name)
+        print(f"Directory '{folder_name}' created successfully.")
+    except FileExistsError:
+        os.mkdir(1 + folder_name)
+        print(f"Directory '{folder_name}' already exist")
+    except PermissionError:
+        print(f"Directory '{folder_name}' no rights")
+    except Exception as e:
+        print(f"An error has occurred: '{e}'")
+    
 def save_audio(filename, audio_data, new_window):
     print("saving audio")
     audio_np = np.concatenate(audio_data, axis=0)
@@ -49,6 +60,7 @@ def save_audio(filename, audio_data, new_window):
         wf.setsampwidth(2)
         wf.setframerate(44100)
         wf.writeframes(audio_np.astype(np.int16).tobytes())
+        wf.close()
 
         new_window.destroy()
         print("new_window destroyed")
