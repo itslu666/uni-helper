@@ -4,6 +4,8 @@ from scipy.io.wavfile import write
 import numpy as np
 import wave
 import threading
+from modules import files_management
+import os
 
 
 def start_rec(start_button, stop_button, thread_container, new_window):
@@ -41,9 +43,15 @@ def start_rec(start_button, stop_button, thread_container, new_window):
 
 
 def save_audio(filename, audio_data, new_window):
-    print("saving audio")
+    print("creating new folder...")
+    lecture_name = files_management.get_new_foldername(filename)
+    os.mkdir(
+        os.path.join("lectures", lecture_name)
+    )  # make dir with full path weil hier modules und da lectures
+
+    print("saving audio...")
     audio_np = np.concatenate(audio_data, axis=0)
-    with wave.open(filename, "wb") as wf:
+    with wave.open("lectures/" + lecture_name + ".wav", "wb") as wf:
         wf.setnchannels(2)
         wf.setsampwidth(2)
         wf.setframerate(44100)
@@ -60,7 +68,7 @@ def show_file_naming_win(audio_data, new_window):
     save_button = ctk.CTkButton(
         frame,
         text="Save",
-        command=lambda: save_audio(f"{input_field.get()}.wav", audio_data, new_window),
+        command=lambda: save_audio(f"{input_field.get()}", audio_data, new_window),
     )
 
     input_field.pack(expand=True, fill="both", pady=(0, 5))
