@@ -23,6 +23,7 @@ def start_rec(start_button, stop_button, thread_container, new_window):
             if status:
                 print(status)
             if is_recording[0]:
+                print(f"Received {frames} frames of audio data.")
                 audio_data.append(indata.copy())
 
         with sd.InputStream(samplerate=44100, channels=2, callback=callback):
@@ -43,15 +44,25 @@ def start_rec(start_button, stop_button, thread_container, new_window):
 
 
 def save_audio(filename, audio_data, new_window):
+    if not audio_data:
+        print("No audio data to save.")
+        return
+
     print("creating new folder...")
     lecture_name = files_management.get_new_foldername(filename)
-    os.mkdir(
-        os.path.join("lectures", lecture_name)
-    )  # make dir with full path weil hier modules und da lectures
+    os.mkdir(os.path.join("./data/lectures", lecture_name))
 
     print("saving audio...")
     audio_np = np.concatenate(audio_data, axis=0)
-    with wave.open("lectures/" + lecture_name + ".wav", "wb") as wf:
+    print(f"Audio data shape: {audio_np.shape}, dtype: {audio_np.dtype}")
+
+    if audio_np.size == 0:
+        print("Audio data is empty after concatenation.")
+        return
+
+    with wave.open(
+        "./data/lectures/" + lecture_name + f"/{lecture_name}_audio" + ".wav", "wb"
+    ) as wf:
         wf.setnchannels(2)
         wf.setsampwidth(2)
         wf.setframerate(44100)
